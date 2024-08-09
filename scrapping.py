@@ -5,18 +5,25 @@ import requests
 from bs4 import BeautifulSoup
 
 # get method para recibir el contenido HTML de la pagina
-url = "https://example.com/"
-response = requests.get(url)
+#url = "https://example.com/"
+url = "https://httpbin.org/status/200"
 
-# Se combierte en un Soup object
-soup = BeautifulSoup(response.content, "html.parser")
+# Manejar Errores
+try:
+    response = requests.get(url)
+    response.raise_for_status()
+    # Se convierte en un Soup object
+    soup = BeautifulSoup(response.content, "html.parser")
 
-# Obtener algunos elementos de la pagina
-title = soup.title.text
-content = soup.find("p").text
-links = [a["href"] for a in soup.find_all("a")]
+    # Obtener algunos elementos de la pagina
+    title = soup.title.text if soup.title else "Sin Titulo"
+    content = soup.find("p").text if soup.find("p") else "Sin Contenido"
+    links = [a["href"] for a in soup.find_all("a")]
 
 
-print(title)
-print(content)
-print(links)
+    print(title)
+    print(content)
+    print(links)
+except requests.exceptions.HTTPError as err:
+    print(f"HTTP Error: {err}")
+
