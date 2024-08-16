@@ -5,8 +5,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # get method para recibir el contenido HTML de la pagina
-#url = "https://example.com/"
-url = "https://httpbin.org/status/500"
+url = "https://example.com/"
+#url = "https://httpbin.org/status/500"
 
 # Manejar Errores
 try:

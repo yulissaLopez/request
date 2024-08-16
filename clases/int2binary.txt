@@ -1,0 +1,42 @@
+def decimal_to_binary(decimal_number):
+    """
+    Converts a decimal integer to its binary representation.
+    """
+    if decimal_number < 0:
+        return "Negative numbers are not supported."
+    return bin(decimal_number)[2:]  # Remove the '0b' prefix
+
+# Example usage
+if __name__ == "__main__":
+    try:
+        decimal_input = int(input("Enter a decimal integer: "))
+        binary_output = decimal_to_binary(decimal_input)
+        print(f"The binary representation of {decimal_input} is: {binary_output}")
+    except ValueError:
+        print("Invalid input. Please enter a valid decimal integer.")
+
+
+***************************************************************************
+def decimal_to_binary(decimal_number):
+    """
+    Converts a decimal integer to its binary representation.
+    """
+    if decimal_number < 0:
+        return "Negative numbers are not supported."
+
+    binary_result = ""
+    while decimal_number > 0:
+        remainder = decimal_number % 2
+        binary_result = str(remainder) + binary_result
+        decimal_number //= 2
+
+    return binary_result
+
+# Example usage
+if __name__ == "__main__":
+    try:
+        decimal_input = int(input("Enter a decimal integer: "))
+        binary_output = decimal_to_binary(decimal_input)
+        print(f"The binary representation of {decimal_input} is: {binary_output}")
+    except ValueError:
+        print("Invalid input. Please enter a valid decimal integer.")
